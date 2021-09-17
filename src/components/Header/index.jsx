@@ -1,4 +1,4 @@
-import logoImg from '../../assets/logo.png';
+import logoImg from "../../assets/pharma-logo.png";
 import userImg from '../../assets/user.png';
 import { Container, Content, } from './styles';
 
