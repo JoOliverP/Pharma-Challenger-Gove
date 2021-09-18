@@ -55,9 +55,10 @@ $ npm start ou yarn start
   #### 🎯 Desafios extras
    ##### ✔️ Adicionar um filtro por Gênero na tabela
    ##### ✔️ Configurar o buscador para poder filtrar por nome e nacionalidade ( Filtrei apenas por nacionalidade pois não encontrei rota de busca por nome na  [API-RandomUser](https://randomuser.me/documentation))
-   #####❌ Adicionar o paginador rota para facilitar compartilhar o link e manter a posição na lista (Precisava ter o link de compartilhamento)
-  #####❌ Escrever Unit Tests ou E2E Test na Lista de Pacientes.
-  #####❌ Configurar Docker no Projeto para facilitar o Deploy da equipe de DevOps;
+   ##### ❌ Adicionar o paginador rota para facilitar compartilhar o link e manter a posição na lista (Precisava ter o link de compartilhamento)
+   ##### ❌ Escrever Unit Tests ou E2E Test na Lista de Pacientes.
+   ##### ❌ Configurar Docker no Projeto para facilitar o Deploy da equipe de DevOps;
+
 
 ### ✍🏻 Comentários
 O desafio no geral foi bem tranquilo, pude aplicar conhecimentos que aprendi recentemente na plataforma da Rocketseat , pela primeira vez utilizei o  frameworks css : Material UI , que faciltou a construção de alguns layouts, tive algumas dificuldades nos filtros e paginação mas pesquisando alguns videos e documentações consegui terminar , infelizmente não consegui completar o link de compartilhamento do paciente acredito que seja porque não configurei as rotas logo quando começei o projeto, continarei estudando para finalmente completar todos os desafios. Obrigado 😊
