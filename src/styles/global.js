@@ -1,9 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-
 export const GlobalStyle = createGlobalStyle`
 :root {
    --background: #f0f2f5;
-
    --blue-100: #8ac9d6;
    --blue-200: #46abbf;
    --blue-300: #008ba7;
@@ -23,7 +21,6 @@ html {
       }
 }
 
-
 * {
    margin: 0;
    padding: 0;
@@ -42,6 +39,10 @@ body, input, textarea, button {
 
 h1,h2,h3,h4,h5,h6, strong {
    font-weight: 600;
+}
+a {
+   text-decoration: none;
+   color:inherit;
 }
 
 button {
@@ -67,11 +68,10 @@ button {
 }
 .react-modal-content {
    width: 100%;
-   max-width: 576px;
+   max-width: 500px;
    background: var(--background);
    padding: 3rem;
    position: relative;
-   border-radius: 0.24rem;
+   border-radius: 0.75rem;
 }
-
 `;

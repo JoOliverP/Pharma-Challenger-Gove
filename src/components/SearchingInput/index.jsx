@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { PatientsContext } from "../../PatientsContext";
 import {
   IconButton,
   OutlinedInput,
@@ -10,7 +11,8 @@ import {
 import SearchIcon from "@material-ui/icons/Search";
 
 export function SearchingInput() {
-  const onSearch = (value) => console.log(value);
+  const [searchTerm, setSearchTerm] = useState("");
+  const { handleSearchPatient } = useContext(PatientsContext);
 
   return (
     <FormControl
@@ -18,15 +20,20 @@ export function SearchingInput() {
       //  margin= 'dense'
       variant="outlined"
     >
-      <InputLabel>Searching</InputLabel>
+      <InputLabel>Search</InputLabel>
       <OutlinedInput
         type="text"
         // value={}
-        onChange={() => {}}
+        onChange={(event) => setSearchTerm(event.target.value)}
         fullWidth
         endAdornment={
           <InputAdornment position="end">
-            <IconButton onClick={() => {}} onMouseDown={() => {}} edge="end">
+            <IconButton
+              onClick={() => {
+                handleSearchPatient(searchTerm);
+              }}
+              edge="end"
+            >
               <SearchIcon />
             </IconButton>
           </InputAdornment>

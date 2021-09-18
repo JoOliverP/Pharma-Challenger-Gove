@@ -6,14 +6,18 @@ import { Container } from "./styles";
 
 export function Dashboard() {
   const [isPatientModalOpen, setIsPatientModalOpen] = useState(false);
+  const [patient,setPatient] = useState({});
 
-  function handleOpenPatientModal() {
+  function handleOpenPatientModal(patient) {
+    setPatient(patient);
     setIsPatientModalOpen(true);
   }
 
   function handleClosePatientModal() {
     setIsPatientModalOpen(false);
+    setPatient({});
   }
+
   return (
     <Container>
       <p>
@@ -22,11 +26,15 @@ export function Dashboard() {
         sed magna. Aenean porta fringilla nulla nec laoreet. Ut et sollicitudin
         neque. Ut auctor et nulla eu egestas.
       </p>
+
       <SearchingInput />
+
       <PatientsTable onOpenPatientModal={handleOpenPatientModal} />
+
       <PatientsModal
         isOpen={isPatientModalOpen}
         onRequestClose={handleClosePatientModal}
+        patient={patient}
       />
     </Container>
   );

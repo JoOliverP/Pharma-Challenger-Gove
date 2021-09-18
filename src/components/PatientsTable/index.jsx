@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
+// import Loader from "react-loader-spinner";
 import { PatientsContext } from "../../PatientsContext";
 import {
   Container,
+  ButtonMore,
   useStyles,
   StyledTableRow,
   StyledTableCell,
@@ -19,14 +21,13 @@ import {
   MenuItem,
   IconButton,
 } from "@material-ui/core";
-import Loop from "@material-ui/icons/Loop";
 import FilterList from "@material-ui/icons/FilterList";
 
 import { format, parseISO } from "date-fns";
 
 export function PatientsTable(props) {
-  const { patients, handleLoadingMore } = useContext(PatientsContext);
-  const { patientGender, setPatientGender } = useState("");
+  const { patients, handleLoadingMore, handleFilterGenderPatient, loading } = useContext(PatientsContext);
+  const [patientGender, setPatientGender] = useState("");
 
   const classes = useStyles();
 
@@ -36,13 +37,17 @@ export function PatientsTable(props) {
   function handleClick(event) {
     setAnchorEl(event.currentTarget);
   }
-  function handleClose() {
+
+  function handleClose(gender) {
     setAnchorEl(null);
+
+    handleFilterGenderPatient(gender);
+    setPatientGender(gender);
   }
 
   return (
     <Container>
-      <Paper className={classes.root}>
+      <Paper className={"paper-content"}>
         <TableContainer className={classes.container}>
           <Table
             stickyHeader
@@ -73,8 +78,12 @@ export function PatientsTable(props) {
                       "aria-labelledby": "basic-button",
                     }}
                   >
-                    <MenuItem onClick={handleClose}>Male</MenuItem>
-                    <MenuItem onClick={handleClose}>Female</MenuItem>
+                    <MenuItem onClick={() => handleClose("male")}>
+                      Male
+                    </MenuItem>
+                    <MenuItem onClick={() => handleClose("female")}>
+                      Female
+                    </MenuItem>
                   </Menu>
                 </StyledTableCell>
                 <StyledTableCell align="center">Birth</StyledTableCell>
@@ -89,7 +98,7 @@ export function PatientsTable(props) {
                       {patient.name.first + " " + patient.name.last}
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                      {patient.gender}
+                      {patient.gender.toUpperCase()}
                     </StyledTableCell>
                     <StyledTableCell align="center">
                       {format(parseISO(patient.dob.date), "dd/MM/yyyy")}
@@ -98,8 +107,9 @@ export function PatientsTable(props) {
                       <Button
                         variant="contained"
                         color="primary"
-                        onClick={props.onOpenPatientModal}
+                        onClick={() => props.onOpenPatientModal(patient)}
                       >
+          
                         View
                       </Button>
                     </StyledTableCell>
@@ -109,10 +119,24 @@ export function PatientsTable(props) {
             </TableBody>
           </Table>
         </TableContainer>
-        <IconButton color="secondary" onClick={handleLoadingMore}>
-          <Loop />
-          test
-        </IconButton>
+        {loading ? (
+          <>
+            <ButtonMore onClick={() => handleLoadingMore(patientGender)}>
+              Loading More ...
+              {/* <Loader
+                type="Oval"
+                color="#222"
+                height={20}
+                width={20}
+                timeout={4000} //3 secs
+              /> */}
+            </ButtonMore>
+          </>
+        ) : (
+          <ButtonMore onClick={() => handleLoadingMore(patientGender)}>
+            Loading More
+          </ButtonMore>
+        )}
       </Paper>
     </Container>
   );

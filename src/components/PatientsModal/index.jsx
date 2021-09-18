@@ -1,35 +1,47 @@
 import Modal from "react-modal";
-import { Container } from "./styles";
-import { Button, IconButton } from "@material-ui/core";
+import { Container, Content } from "./styles";
+import { IconButton } from "@material-ui/core";
 import Close from "@material-ui/icons/Close";
-import userImg from "../../assets/user.png";
+
+import { format, parseISO } from "date-fns";
 
 export function PatientsModal(props) {
-  const { isOpen, onRequestClose } = props;
+  const { isOpen, onRequestClose, patient } = props;
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
+      ariaHideApp={false}
     >
       <Container>
+        {/* {console.log(patient)} */}
         <IconButton onClick={onRequestClose} className="react-modal-close">
           <Close />
         </IconButton>
-        <img src={userImg} alt="Patient image" />
-        <h2>Jonh Doido</h2>
+        {patient && patient.picture ? (
+          <Content>
+            <img src={patient.picture.large} alt="Patient image" />
 
-        <p>Email: aaaaaa@gmail.com</p>
-        <p>Gênero: Masculino</p>
-        <p>Data de nascimento: 20/02/2077</p>
-        <p>Telefone : (91) 980551666</p>
-        <p>Nacionalidade: Chileno</p>
-        <p>Endereço: Rua da bala perdida</p>
-        <p>ID : USER1661692614166</p>
-        <Button variant="outlined" color="primary" size="large" className="btn-share">
-          Share
-        </Button>
+            <h2>{patient.name.first + " " + patient.name.last}</h2>
+
+            <p><span>E-mail </span> : {patient.email}</p>
+            <p><span>Gender </span> : {patient.gender}</p>
+            <p>
+              <span>Date of birth</span> : {format(parseISO(patient.dob.date), "dd/MM/yyyy")}
+            </p>
+            <p><span>Telephone </span> : {patient.cell}</p>
+            <p><span>Nationality </span> : {patient.location.country}</p>
+            <p>
+              <span>Address</span> : {patient.location.street.name} <span>Nº</span>:{" "}
+              {patient.location.street.number}
+            </p>
+            <p><span>ID</span> : {patient.login.uuid}</p>
+          </Content>
+        ) : (
+          <div></div>
+        )}
       </Container>
     </Modal>
   );

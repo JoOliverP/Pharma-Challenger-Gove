@@ -1,11 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
   img {
     position: absolute;
     top: -17%;
@@ -13,6 +8,8 @@ export const Container = styled.div`
 
     left: 50%;
     transform: translateX(-50%);
+
+    border-radius: 50%;
   }
   .react-modal-close {
     position: absolute;
@@ -27,9 +24,18 @@ export const Container = styled.div`
     font-size: 1.5rem;
     margin: 1.5rem 0;
   }
-  .btn-share {
-    width: 60%;
-    margin-top:1.5rem;
+  p {
+    margin-bottom: 0.75rem;
+    span {
+      font-size: 1rem;
+      font-weight: 600;
+    }
   }
 `;
 
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
